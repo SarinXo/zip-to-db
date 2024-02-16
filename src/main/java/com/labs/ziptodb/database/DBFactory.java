@@ -32,12 +32,12 @@ public class DBFactory {
     }
 
     private static Connection createConnection(String name) throws SQLException {
-        for(var dataource : databaseData){
-            if(name.equals(dataource.name())){
+        for(var datasource : databaseData){
+            if(name.equals(datasource.name())){
                 Properties properties = new Properties();
-                properties.put("user", dataource.user());
-                properties.put("password", dataource.password());
-                return DriverManager.getConnection(dataource.url(), properties);
+                properties.put("user", datasource.user());
+                properties.put("password", datasource.password());
+                return DriverManager.getConnection(datasource.url(), properties);
             }
         }
         throw new SQLException(
@@ -50,10 +50,13 @@ public class DBFactory {
         try{
             var con = connections.get(name);
             if(con.minusUse() <= 0){
+                ((Connection)(con.getConnection())).close();
                 connections.remove(name);
             }
         } catch (NullPointerException e){
             throw new NullPointerException("this connection already close!");
+        } catch (SQLException e) {
+            throw new RuntimeException("Error with convert Object -> Connection");
         }
     }
 
