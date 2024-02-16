@@ -1,1 +1,26 @@
+app:
+  entities-per-cycle: 100_000
+
+db:
+  name: "postgres"
+  host: "localhost"
+  user: "user"
+  password: "pswd"
+  port: 17071
+
+datasources:
+  - name: postgres
+    url: "jdbc:postgresql://${db.host}:${db.port}/${db.name}"
+    user: "${db.user}"
+    password: "${db.password}"
+
+spring:
+  datasource:
+    url: "${datasources[0].url}"
+    username: "${datasources[0].user}"
+    password: "${datasources[0].password}"
+    hikari:
+      driver-class-name: org.postgresql.Driver
+
+
 
