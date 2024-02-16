@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DBFactory {
     private static List<Datasource> databaseData;
 
-    private static Map<String, ConnectionAndCounter> connections = new HashMap<>();
+    private static final Map<String, ConnectionAndCounter> connections = new HashMap<>();
 
     public static Object getConnection(String name) throws SQLException {
         if(connections.containsKey(name)) {
