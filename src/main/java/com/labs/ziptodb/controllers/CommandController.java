@@ -1,4 +1,7 @@
 package com.labs.ziptodb.controllers;
 
-public class Command {
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class CommandController {
 }

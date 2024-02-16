@@ -1,0 +1,11 @@
+version: 3.1
+
+services:
+  db:
+    image: postgres:14.7-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pswd
+    ports:
+      - "17071:5432"
+
